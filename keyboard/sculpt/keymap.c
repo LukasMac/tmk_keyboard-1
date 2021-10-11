@@ -5,17 +5,29 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KEYMAP(
         PAUS, DEL, 0, 9, 8, BSPC, 7, TAB, Q, 2, 1, \
         PGUP, VOLU, LBRC, MINS, RBRC, INS, Y, F5, F3, W, 4, F6, \
-        HOME, CALC, P, O, I, U, R, E, CAPS, 3, T, \
+        HOME, CALC, P, O, I, U, R, E, ESC, 3, T, \
         SLCK, ENT, SCLN, L, K, BSLS, J, F, D, NUBS, A, LALT, \
         RGUI, FN1, SLSH, QUOT, LEFT, H, G, F4, S, ESC, LGUI, \
         END, RSFT, PGDN, NUHS,  DOT, COMM, M, V, C, X, Z, LSFT, \
         RCTL, RGHT, UP, DOWN, FN1, N, B, SPC, LCTL, \
         PSCR, VOLD, EQL, MPLY, MNXT, MUTE, MPRV, 5, F2, F1, GRV, 6), 
-    /* 1: FN1 (Replaces arrows with pagination, home and end and activates
+
+    /* 1: qwerty - for Windows (cmd becomes ctrl and right click button becomes windows button) */
+    KEYMAP(
+        TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, \
+        TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, \
+        TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, \
+        TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, \
+        TRNS, LGUI, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, LCTL, \
+        TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, \
+        TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, \
+        TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS ),
+
+    /* 2: FN1 (Replaces arrows with pagination, home and end and activates
                multimedia keys on top row).
      */
     KEYMAP(
-        TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, FN2, TRNS, TRNS, \
+        TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, FN2, TRNS, FN19, \
         TRNS, F12, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, VOLD, FN3, TRNS, TRNS, \
         TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, FN5, FN4, TRNS, TRNS, FN6, \
         TRNS, TRNS, TRNS, RGHT, UP, TRNS, DOWN, FN10, FN9, TRNS, FN7, TRNS, \
@@ -23,6 +35,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, FN18, FN15, FN14, FN13, FN12, TRNS, \
         TRNS, END, PGUP, PGDN, TRNS, FN17, FN16, TRNS, TRNS, \
         TRNS, F11, TRNS, F9, F8, F10, F7, TRNS, MUTE, MPLY, TRNS, TRNS ),
+
 };
 
 enum macro_id {
@@ -44,26 +57,28 @@ enum macro_id {
   CTRL_OPTION_CMD_N,
   CTRL_OPTION_CMD_M,
 };
+
 const uint16_t PROGMEM fn_actions[] = {
     [0] = ACTION_DEFAULT_LAYER_SET(0),    // Default layer. Not used.
-    [1] = ACTION_LAYER_TAP_KEY(1, KC_APP),  // FN1
-    [2] = ACTION_MACRO(CTRL_OPTION_CMD_Q),
-    [3] = ACTION_MACRO(CTRL_OPTION_CMD_W),
-    [4] = ACTION_MACRO(CTRL_OPTION_CMD_E),
-    [5] = ACTION_MACRO(CTRL_OPTION_CMD_R),
-    [6] = ACTION_MACRO(CTRL_OPTION_CMD_T),
-    [7] = ACTION_MACRO(CTRL_OPTION_CMD_A),
-    [8] = ACTION_MACRO(CTRL_OPTION_CMD_S),
-    [9] = ACTION_MACRO(CTRL_OPTION_CMD_D),
-    [10] = ACTION_MACRO(CTRL_OPTION_CMD_F),
-    [11] = ACTION_MACRO(CTRL_OPTION_CMD_G),
-    [12] = ACTION_MACRO(CTRL_OPTION_CMD_Z),
-    [13] = ACTION_MACRO(CTRL_OPTION_CMD_X),
-    [14] = ACTION_MACRO(CTRL_OPTION_CMD_C),
-    [15] = ACTION_MACRO(CTRL_OPTION_CMD_V),
-    [16] = ACTION_MACRO(CTRL_OPTION_CMD_B),
-    [17] = ACTION_MACRO(CTRL_OPTION_CMD_N),
-    [18] = ACTION_MACRO(CTRL_OPTION_CMD_M),
+    [1] = ACTION_LAYER_TAP_KEY(2, KC_APP),  // FN1
+    [2] = ACTION_MACRO(CTRL_OPTION_CMD_Q),  // FN2
+    [3] = ACTION_MACRO(CTRL_OPTION_CMD_W),  // FN3
+    [4] = ACTION_MACRO(CTRL_OPTION_CMD_E),  // FN4
+    [5] = ACTION_MACRO(CTRL_OPTION_CMD_R),  // FN5
+    [6] = ACTION_MACRO(CTRL_OPTION_CMD_T),  // FN6
+    [7] = ACTION_MACRO(CTRL_OPTION_CMD_A),  // FN7
+    [8] = ACTION_MACRO(CTRL_OPTION_CMD_S),  // FN8
+    [9] = ACTION_MACRO(CTRL_OPTION_CMD_D),  // FN9
+    [10] = ACTION_MACRO(CTRL_OPTION_CMD_F), // FN10
+    [11] = ACTION_MACRO(CTRL_OPTION_CMD_G), // FN11
+    [12] = ACTION_MACRO(CTRL_OPTION_CMD_Z), // FN12
+    [13] = ACTION_MACRO(CTRL_OPTION_CMD_X), // FN13
+    [14] = ACTION_MACRO(CTRL_OPTION_CMD_C), // FN14
+    [15] = ACTION_MACRO(CTRL_OPTION_CMD_V), // FN15
+    [16] = ACTION_MACRO(CTRL_OPTION_CMD_B), // FN16
+    [17] = ACTION_MACRO(CTRL_OPTION_CMD_N), // FN17
+    [18] = ACTION_MACRO(CTRL_OPTION_CMD_M), // FN18
+    [19] = ACTION_LAYER_TOGGLE(1),   // FN19
 };
 
 /*
