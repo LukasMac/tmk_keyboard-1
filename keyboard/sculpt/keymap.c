@@ -30,7 +30,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                multimedia keys on top row).
      */
     KEYMAP(
-        TRNS, TRNS, CAPS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, FN22, \
+        TRNS, TRNS, CAPS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, \
         TRNS, F12, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, VOLD, FN3, TRNS, TRNS, \
         TRNS, FN11, TRNS, TRNS, TRNS, TRNS, FN5, FN4, TRNS, TRNS, FN6, \
         TRNS, TRNS, TRNS, RGHT, UP, TRNS, DOWN, FN10, FN9, TRNS, FN7, FN2, \
@@ -283,6 +283,7 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
               type_string("FN + CALC  = Show this help\n");
               type_string("FN + /  = Show current layer\n");
               type_string("FN + WIN  = Toggle Windows layer\n");
+              type_string("FN + 0  = Caps Lock on/off\n");
               type_string("\n--- Text Macros ---\n");
               type_string("FN + Z  = Work email\n");
               type_string("FN + X  = Address\n");
